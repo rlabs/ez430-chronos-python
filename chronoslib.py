@@ -4,6 +4,15 @@ import time
 BAUDRATE = 115200
 PORT = '/dev/ttyACM0'
 
+def zerocrossed_up(prev, curr):
+        return (prev < 100) and (curr > 200)
+               
+def zerocrossed_down(prev, curr):
+        return (prev > 200) and (curr < 100)
+
+def zero_crossed(prev, curr):
+        return zerocrossed_up(prev, curr) or zerocrossed_down(prev, curr)
+
 def port_open():
 	fd = serial.Serial(PORT, baudrate=BAUDRATE)
 	return fd
